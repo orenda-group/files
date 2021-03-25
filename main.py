@@ -14,7 +14,7 @@ model_names = [
                
             ]
 
-def transfer_pickle_files():
+def show_keys():
     url = 'https://github.com/orenda-group/files/blob/master/training_data.zip?raw=true'
     response = requests.get(url)
     with zipfile.ZipFile(io.BytesIO(response.content)) as zfile:
@@ -24,4 +24,8 @@ def transfer_pickle_files():
             if name in model_names:
                 file_store_dic = pickle.load(zfile.open(f))
                 keys = list(file_store_dic.keys())
+                print(name)
                 print(keys[0][0], keys[-1][0])
+
+if __name__ == "__main__":
+    show_keys()
